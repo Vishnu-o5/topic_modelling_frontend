@@ -17,16 +17,21 @@ const Login = () => {
     const password = data.get("password");
 
     try {
-      const response = await fetch("http://localhost:8080/login_page", {
+      const response = await fetch("http://localhost:8080/perform_login", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         credentials: "include",
         body: new URLSearchParams({ username, password }),
       });
 
+
       if (response.ok) {
         alert("Login successful!");
+
+        localStorage.setItem("username", username); 
         navigate("/dashboard_page");
+
+    
       } else {
         alert("Login failed.");
       }
